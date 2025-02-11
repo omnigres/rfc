@@ -53,7 +53,7 @@ kind of metadata files:
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
 ```
 
 ### Metadata
@@ -80,7 +80,7 @@ on every revision capture)
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
 ```
 
@@ -123,12 +123,12 @@ added_column_type(employee, name, text)
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
 ```
 
-**diff.yml**
+**diff.yaml**
 
 ```yaml
 - removed_table: # ...
@@ -171,9 +171,9 @@ We can add either a single file:
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   migrate.sql 
 ```
 
@@ -181,9 +181,9 @@ Or a directory of (lexicographically ordered?) files:
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   migrate/
     1_types.sql
     2_tables.sql
@@ -193,9 +193,9 @@ For completeness, we might want to be able to pursue reversal of the schema:
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   undo.sql 
 ```
 
@@ -207,9 +207,9 @@ in a specific place so they are easy to locate:
 
 ```shell
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   migrate.sql 
   transformations/
 ```
@@ -272,9 +272,9 @@ capturing them in data files (text/csv/json?)
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   migrate.sql 
   transformations/
   data/currency.csv
@@ -289,17 +289,17 @@ if data in some of the tables is meant to be present to the exclusion of any oth
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
-  metadata.yml
+  metadata.yaml
   sources.dat
-  PARENT_ID.diff.yml
+  PARENT_ID.diff.yaml
   migrate.sql 
   transformations/
   data/currency.csv
   data/account_types.csv
-  data/metadata.yml
+  data/metadata.yaml
 ```
 
-***data/metadata.yml**:
+***data/metadata.yaml**:
 
 ```yaml
 "$schema": "https://schema.omnigr.es/revision/data/v1.json"
