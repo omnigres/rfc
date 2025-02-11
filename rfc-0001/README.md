@@ -3,10 +3,10 @@
 Managing schema evolution, especially in presence of data-native functions
 (fka _stored procedures_) is a non-trivial task:
 
-* How do prevent data and auxiliary information (indices, etc.) loss?
+* How do we prevent data and auxiliary information (such as presence of indices) loss?
 * How do we ensure that schema is evolved as intended?
 * How do we make sure the correct set of extensions at correct versions is used for every specific version?
-* How do we make sure data-native functions correspond the correct revision of the schema?
+* How do we sure data-native functions correspond the correct revision of the schema?
 * and so on.
 
 This proposal captures the approach Omnigres is using. Many parts of it are not implemented yet. The purpose
@@ -16,10 +16,10 @@ expediently.
 ## Starting point
 
 Core thesis behind this proposal is that in a business system project, schema and code are maintained
-cohesively in a single repository. Currently, this implemented in a form of a _source directory_ that
+cohesively in a single repository. Currently, this is implemented as a _source directory_ that
 contains SQL and other files (such as Python modules) that can be provisioned.
 
-Using `omni_schema` extension and its _schema assembly_ functionality, given the _souce directory_
+Using `omni_schema` extension and its _schema assembly_ functionality, given the _source directory_
 it can assemble the schema files and statements in a correct order. This is achieved through brute-forcing:
 it runs statements and non-SQL files one by one until an error occurs and attempting to resolve the problem
 by running other statements and files until completion or an error loop. This is done in a brand-new database
