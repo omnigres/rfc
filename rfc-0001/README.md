@@ -86,13 +86,15 @@ on every revision capture)
 
 **sources.dat** is a provisional name as there are a few formats worth discussing:
 
-| Format           | Pros                                   | Cons                                                                                  |
-|------------------|----------------------------------------|---------------------------------------------------------------------------------------|
-| Tar              | Easy to open using command-line tools  | Not directly understood by Postgres unless copied through a program; uncompressed     |
-| Tar.(gz/bz2/...) | Same as tar + Smaller size             | Same as tar                                                                           |
-| Zip              | Same as tar + Smaller size             | Same as tar                                                                           |
-| SQL              | Can be loaded by sending into Postgres | Can modify arbitrary objects, not directly usable in command-line for file extraction |
-| text/csv/json    | Can be loaded using COPY in Postgres   | Not directly usable in command-line for file extraction                               |
+| Format           | Pros                                          | Cons                                                                                     |
+|------------------|-----------------------------------------------|------------------------------------------------------------------------------------------|
+| Tar              | Easy to open using command-line tools         | Not directly understood by Postgres unless copied through a program; uncompressed        |
+| Tar.(gz/bz2/...) | Same as tar + Smaller size                    | Same as tar                                                                              |
+| Zip              | Same as tar + Smaller size                    | Same as tar                                                                              |
+| SQL              | Can be loaded by sending into Postgres        | Can modify arbitrary objects, not directly usable in command-line for file extraction    |
+| text/csv/json    | Can be loaded using COPY in Postgres          | Not directly usable in command-line for file extraction                                  |
+| SQLite           | Allows to contain rich, queryable information | Not directly usable in command-line for file extraction. Requires release of omni_sqlite |
+
 
 Other suggestions are welcome.
 
