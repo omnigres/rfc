@@ -39,8 +39,8 @@ migration identification so we can easily refer to them in the future.
 Let's use UUID v7 (time-ordered) identifiers. They fit UUID format, they are sorted and convey the (non-strict) notion of time.
 
 Now, in order for migrations to be properly ordered, without relying on time, let's propose that every migration can refer to
-zero or more parent migrations. There could be only one migration with zero parents (the very first one) and we should always drive
-the set of migrations to having one "interim" final transaction so we don't have much divergence. We'll cover that later.
+zero or more parent migrations. There could be only one migration with zero parents (the very first one) and we should always
+make migrations converge to a linear ending by having one "interim" final migration so we don't have much divergence. We'll cover that later.
 
 For better comprehension, let's visualize such migrations as directories in sub "migrations" directory, named after their ID:
 
