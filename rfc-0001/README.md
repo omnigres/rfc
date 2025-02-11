@@ -33,22 +33,22 @@ directory is the absolute source of truth.
 The above schema works if we never need to migrate a (production) system with data in place.
 However, this expectation is neither realistic nor practical.
 
-When we are ready to capture a version of the schema (including the very first one), we should start
-migration identification so we can easily refer to them in the future.
+When we are ready to capture a revision of the schema (including the very first one), we should start
+revision identification so we can easily refer to them in the future.
 
 Let's use UUID v7 (time-ordered) identifiers. They fit UUID format, they are sorted and convey the (non-strict) notion of time.
 
-Now, in order for migrations to be properly ordered, without relying on time, let's propose that every migration can refer to
-zero or more parent migrations. There could be only one migration with zero parents (the very first one) and we should always
-make migrations converge to a linear ending by having one "interim" final migration so we don't have much divergence. We'll cover that later.
+Now, in order for revisions to be properly ordered, without relying on time, let's propose that every revision can refer to
+zero or more parent revisions. There could be only one revision with zero parents (the very first one) and we should always
+make revisions converge to a linear ending by having one "interim" final revision so we don't have much divergence. We'll cover that later.
 
-For better comprehension, let's visualize such migrations as directories in sub "migrations" directory, named after their ID:
+For better comprehension, let's visualize such revisions as directories "revisions" directory, named after their ID:
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
 ```
 
-Since we need to store parent references, let's say every migration will have some
+Since we need to store parent references, let's say every revision will have some
 kind of metadata files:
 
 ```
@@ -61,8 +61,8 @@ kind of metadata files:
 **metadata.yaml**
 ```yaml
 # To make sure we know what format is this
-"$schema": "https://schema.omnigr.es/migration/v1.json"
-# List of parent IDs this migrations joins
+"$schema": "https://schema.omnigr.es/revision/v1.json"
+# List of parent IDs this revisions joins
 parents: []
 ```
 
@@ -73,10 +73,10 @@ parents: []
 
 ### Sources
 
-Now, since for every migration we should be capturing all the 
+Now, since for every revision we should be capturing all the 
 source code involved (to avoid any ambiguity about it), let's capture them all 
 in a single file (to avoid polluting project repository with multitudes of files
-on every migration capture)
+on every revision capture)
 
 ```
 0194f2ae-5a6f-762a-8ec4-d06d609f14fc/
@@ -136,10 +136,10 @@ added_column_type(employee, name, text)
 # ...
 ```
 
-This file captures which changes were found between parent migration and the current one. This is important for tracking
+This file captures which changes were found between parent revision and the current one. This is important for tracking
 purposes (and avoidance of implicitness), but also lets us get to a very interesting point:
 
-However, we do a migration, we now have a precisely defined "change" test that we can use to make sure that the
+However, when do a migration for a revision, we now have a precisely defined "change" test that we can use to make sure that the
 migration script has led to the original desired schema.
 
 #### Re-interpreting diffs
@@ -302,7 +302,7 @@ if data in some of the tables is meant to be present to the exclusion of any oth
 ***data/metadata.yml**:
 
 ```yaml
-"$schema": "https://schema.omnigr.es/migration/data/v1.json"
+"$schema": "https://schema.omnigr.es/revision/data/v1.json"
 currency: present
 account_types: only
 ```
