@@ -128,6 +128,8 @@ added_column_type(employee, name, text)
   PARENT_ID.diff.yaml
 ```
 
+(if there are no parents, it should be called `diff.yaml`)
+
 **diff.yaml**
 
 ```yaml
